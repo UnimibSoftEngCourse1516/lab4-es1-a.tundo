@@ -190,14 +190,15 @@ public abstract class AbstractJDBCItemSimilarity extends AbstractJDBCComponent i
   }
 
   private double doItemSimilarity(PreparedStatement stmt, long itemID1, long itemID2) throws SQLException {
+	  long first = itemID1, second = itemID2;
     // Order as smaller - larger
-    if (itemID1 > itemID2) {
-      long temp = itemID1;
-      itemID1 = itemID2;
-      itemID2 = temp;
+    if (first > second) {
+      long temp = first;
+      first = second;
+      second = temp;
     }
-    stmt.setLong(1, itemID1);
-    stmt.setLong(2, itemID2);
+    stmt.setLong(1, first);
+    stmt.setLong(2, second);
     log.debug("Executing SQL query: {}", getItemItemSimilaritySQL);
     ResultSet rs = null;
     try {
