@@ -486,7 +486,9 @@ public abstract class VectorBinaryAssign {
 
     @Override
     public boolean isValid(Vector x, Vector y, DoubleDoubleFunction f) {
-      return x.isSequentialAccess() && y.isSequentialAccess() && !x.isAddConstantTime() && !x.isDense() && !y.isDense();
+    	boolean areSequential = x.isSequentialAccess() && y.isSequentialAccess();
+    	boolean areNotDense = !x.isDense() && !y.isDense();
+      return areSequential && !x.isAddConstantTime() && areNotDense;
     }
 
     @Override
