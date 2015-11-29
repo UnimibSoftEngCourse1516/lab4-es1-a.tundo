@@ -44,9 +44,9 @@ public final class Sorting {
     int comparisonxy = comp.compare(x, y);
     int comparisonxz = comp.compare(x, z);
     int comparisonyz = comp.compare(y, z);
-    return comparisonxy < 0 ? (comparisonyz < 0 ? b
-        : (comparisonxz < 0 ? c : a)) : (comparisonyz > 0 ? b
-        : (comparisonxz > 0 ? c : a));
+    int ifYzLessThanZero = (comparisonyz < 0 ? b : (comparisonxz < 0 ? c : a));
+    int ifYzMoreThanZero = (comparisonyz > 0 ? b : (comparisonxz > 0 ? c : a));
+    return comparisonxy < 0 ? ifYzLessThanZero : ifYzMoreThanZero;
   }
   
   private static int med3(byte[] array, int a, int b, int c, ByteComparator comp) {
